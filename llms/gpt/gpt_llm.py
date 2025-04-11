@@ -9,10 +9,10 @@ from langchain_core.language_models.chat_models import BaseChatModel
 
 class GptLlm(Llm):
 
-    llm_model: BaseChatModel | None
+    llm_model: BaseChatModel
 
-    def init(self, model: str, model_provider: str) -> None:
-        self.llm_model = init_chat_model(model, model_provider=model_provider)
+    def __init__(self, model: str, model_provider: str, api_key: str) -> None:
+        self.llm_model = init_chat_model(model, model_provider=model_provider, api_key=api_key)
 
     def search_notes(self, docs: List[Document], query: str) -> str:
         chain = load_qa_chain(self.llm_model, chain_type="stuff")

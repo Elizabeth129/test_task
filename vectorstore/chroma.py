@@ -24,7 +24,7 @@ class ChromaVectorStore(VectorStoreABC):
         metadata = {
             "id": note_id,
             "title": title,
-            "created_at": datetime.isoformat()
+            "created_at": datetime.now().isoformat()
         }
         doc = Document(page_content=content, metadata=metadata)
         self.storage.add_documents([doc])
