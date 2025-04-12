@@ -6,18 +6,10 @@ from fastapi import FastAPI
 from dotenv import load_dotenv
 from pydantic import BaseModel
 from llms.gpt.gpt_llm import GptLlm
+from models.note_read import NoteRead
+from models.note_create import NoteCreate
 from langchain_openai import OpenAIEmbeddings
 from vectorstore.chroma import ChromaVectorStore
-
-
-class NoteCreate(BaseModel):
-    title: str
-    content: str
-
-class NoteRead(BaseModel):
-    title: str
-    content: str
-    created_at: str
 
 load_dotenv()
 
@@ -27,10 +19,12 @@ llm = GptLlm("gpt-4o-mini", model_provider="openai", api_key=os.getenv("OPENAI_A
 
 app = FastAPI()
 
+
 @app.post("/notes/")
 def create_note(note: NoteCreate):
     metadata = vectore_store.add_note_to_store(note.title, note.content)
     return {"message": "Note saved", "metadata": metadata}
+
 
 @app.get("/notes/recent/", response_model=List[NoteRead])
 def recent_notes(n: int = 5):
@@ -40,6 +34,7 @@ def recent_notes(n: int = 5):
         "content": content,
         "created_at": meta["created_at"]
     } for meta, content in notes]
+
 
 @app.get("/notes/search/")
 def search(query: str, k: int):
