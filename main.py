@@ -48,7 +48,7 @@ async def search(query: str, k: int = 5):
     return {"answer": answer}
 
 
-@app.get("/notes/extract/appointments")
+@app.get("/notes/extract/appointments/")
 async def extract_appointments(k: int = 5):
     docs = vectore_store.get_recent_notes(k)
     answer = llm.extract_appointments([Document(page_content=content, 
@@ -57,7 +57,7 @@ async def extract_appointments(k: int = 5):
     return convert_str_to_dict(answer)
 
 
-@app.get("/notes/extract/tasks")
+@app.get("/notes/extract/tasks/")
 async def extract_tasks(k: int = 5):
     docs = vectore_store.get_recent_notes(k)
     answer = llm.extract_tasks([Document(page_content=content, 
@@ -66,7 +66,7 @@ async def extract_tasks(k: int = 5):
     return convert_str_to_dict(answer)
 
 
-@app.get("/notes/extract/recipes")
+@app.get("/notes/extract/recipes/")
 async def extract_recipes(k: int = 5):
     docs = vectore_store.get_recent_notes(k)
     answer = llm.extract_recipes([Document(page_content=content, 
@@ -75,7 +75,7 @@ async def extract_recipes(k: int = 5):
     return convert_str_to_dict(answer)
 
 
-@app.get("/notes/extract/vocabulary")
+@app.get("/notes/extract/vocabulary/")
 async def extract_vocabulary(k: int = 5):
     docs = vectore_store.get_recent_notes(k)
     answer = llm.extract_vocabulary([Document(page_content=content, 

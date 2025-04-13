@@ -72,4 +72,8 @@ Install all required Python packages using pip:
     You can use the interactive API interface to test endpoints such as:  
     - POST /notes/ to add a note.
     - GET /notes/recent/ to fetch recent notes.
-    - GET /notes/search/ to ask questions and retrieve answers.
+    - GET /notes/search/ to ask questions and retrieve answers based on last N notes.
+    - GET /notes/extract/appointments/ to extract information about appointments from last N notes.
+    - GET /notes/extract/tasks/ to extract information about tasks from last N notes.
+    - GET /notes/extract/recipes/ to extract recipes from last N notes.
+    - GET /notes/extract/vocabulary/ to extract vocabulary from last N notes.
