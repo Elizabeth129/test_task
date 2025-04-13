@@ -5,6 +5,7 @@ This is an MVP for a personal note-taking application that allows you to:
 - Save flexible text notes
 - Retrieve your most recent notes
 - Ask questions in natural language and receive answers using RAG powered by LLM
+- Extract structured data about: appointments, tasks, recipes, vocabulary mentioned in last N notes
 
 ## 🚀 Features
 
